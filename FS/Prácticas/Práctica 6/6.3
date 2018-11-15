@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#Explicación : Copiamos la información de toda una iteración en un archivo. Posteriormente, guardamos en una variable el número de líneas del archivo, para de esta forma crear otro variable que nos almacene el número de líneas sin contar las 8 primeras que son inutilizables. A continuación, cogemos mediante la orden tail todas las líneas de nuestro archivo menos esas 8 primeras y las ordenamos a partir del campo que indica la memoria consumida, de tal forma que se ordenan de las que menos consumen a las que más. Una vez hecho esto, nos quedamos con la última línea, pues es la que indica el programa que mayor memoria está consumiendo, y mediante la orden 'tr -s' hacemos que los espacios se conviertan en uno solo, de tal forma que podremos utilizar el espacio como un delimitador de campo para así poder sacar el nombre del programa mediante un cut. 
+
+top -bn 1 > archivo_temporal.txt
+
+numero_lineas=`cat archivo_temporal.txt | wc -l`
+numero_lineas_validas=`expr $numero_lineas - 8`
+
+tail -n $numero_lineas_validas archivo_temporal.txt | sort -k 10 | tail -n 1 | tr -s " " " " | cut -d " " -f12 | cat
+
+rm archivo_temporal.txt
