@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "Introduzca las tres primeras letras de un mes : "
+read mes
+
+case $mes in
+
+	ene) echo "Enero";;
+	feb) echo "Febrero";;
+	mar) echo "Marzo";;
+	abr) echo "Abril";;
+	may) echo "Mayo";;
+	jun) echo "Junio";;
+	jul) echo "Julio";;
+	ago) echo "Agosto";;
+	sep) echo "Septiembre";;
+	oct) echo "Octubre";;
+	nov) echo "Noviembre";;
+	dic) echo "Diciembre";;
+	*) echo "Introduzca de forma correcta el dato pedido, es decir, las tres primeras letras significativas de un mes.";;
+
+esac

@@ -1,0 +1,45 @@
+#!/bin/bash
+
+destino="CopiasSeguridad"
+
+if ! test -d $destino; then 
+
+	mkdir $destino
+
+fi
+
+if (( $# >= 1 )); then
+
+	errores=0
+
+	for i in $@
+
+		do
+
+			if test -d $i; then
+	
+				errores=$[$errores + 1]
+
+			fi
+		
+		done
+
+	if (( $errores == 0 )); then
+		
+			tar cfv ./$destino/copia`date +"%Y%m%d"`.tar $@
+			gzip ./$destino/copia`date +"%Y%m%d"`.tar
+	
+	else 
+
+		echo "Alguno de los parámetros introducidos no existe."
+
+	fi
+
+else
+
+	echo "El número de parámetros introducidos es incorrecto."
+
+fi
+
+
+

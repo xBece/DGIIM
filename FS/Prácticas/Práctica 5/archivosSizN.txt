@@ -1,0 +1,7 @@
+.
+./directorio
+./directorio/archivo2
+./directorio/archivo
+./PruebaFor
+./archivosSizN.txt
+./5.1

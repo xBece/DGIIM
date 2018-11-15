@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "Pulse una tecla."
+read tecla
+
+case $tecla in
+
+	[º0-9\'¡]) echo "La tecla pulsada, $tecla , se encuentra en la primera fila";;
+	[qwertyuiop\`+]) echo "La tecla pulsada, $tecla , se encuentra en la segunda fila";;
+	[asdfghjklñ\'ç]) echo "La tecla pulsada, $tecla , se encuentra en la tercera fila";;
+	[\<zxvbnm,.-]) echo "La tecla pulsada, $tecla , se encuentra en la cuarta fila";;
+	*) echo "La tecla pulsada, $tecla , se encuentra en una fila indeterminada";;
+
+esac

@@ -1,0 +1,32 @@
+	#!/bin/bash
+
+directorio=`test -d $1 && echo true || echo false`
+entero=`echo $2 | grep -q "[0-9]\+" && echo true || echo false`
+
+if (( $# == 2 )); then
+	
+	if [ $directorio == "true" ] && [ $entero == "true" ]; then
+		
+		find . -size -$2 >> archivosSizN.txt
+		echo "Aquellos archivos pertenecientes al directorio de trabajo con un tamaño menor a $2 han sido anotados correctamente en el fichero archivosSizN.txt"
+	
+	elif [ $directorio == "false" ] && [ $entero == "false" ]; then
+	
+		echo "Ambos argumentos han sido introducidos erróneamente. El primero de ellos deberá ser un directorio existente y el segundo un número entero."
+
+	elif [ $directorio == "false" ]; then
+		
+		echo "El primer argumento introducido debe ser un directorio existente."
+
+	elif [ $entero == "false" ]; then
+
+		echo "El segundo argumento ha de ser un entero."
+
+	fi
+
+else 
+
+	echo "Ha introducido un número incorrecto de argumentos."
+
+fi
+		

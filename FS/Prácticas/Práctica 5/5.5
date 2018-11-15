@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "Introduzca un número comprendido entre 1 y 10 :"
+read numero
+
+while (( $numero < 1 || $numero > 10 ))
+	
+	do
+	
+		echo "El dato introducido no se encuentra en el rango especificado."
+		echo "Vuelva a introducir el número pedido."
+		read numero
+
+	done
+
+echo "El número introducido es $numero y se encuentra dentro del rango especificado."
+	

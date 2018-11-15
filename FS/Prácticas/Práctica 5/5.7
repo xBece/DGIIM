@@ -1,0 +1,46 @@
+#!/bin/bash
+
+trap 'echo Fin del guion $0' EXIT
+
+es_shell="false"
+
+for linea in `cat /etc/shells | cut -d'/' -f3`
+	
+	do
+
+		if [ $1 == `echo $linea` ]; then
+
+			es_shell="true"
+
+		fi
+
+	done
+
+if [ $es_shell == "true" ]; then
+
+	for linea in `cat /etc/passwd`
+	
+		do
+
+			usuario=`echo $linea | cut -d':' -f1`
+			shell=`echo $linea | cut -d':' -f7`
+			valor="/bin/$1"
+			
+			if [[ `echo $shell` == $valor ]]; then
+
+				echo $usuario >> tmp.txt
+
+			fi
+
+		done
+
+	cat tmp.txt 2> /dev/null | sort
+	rm tmp.txt 2> /dev/null
+
+else
+
+	echo "El argumento introducido no es un shell."
+
+fi
+
+

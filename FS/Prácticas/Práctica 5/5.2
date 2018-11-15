@@ -1,0 +1,29 @@
+#!/bin/bash
+
+es_directorio=`test -d $1 && echo true || echo false`
+
+if (( $# == 1 )); then
+
+	if [ $es_directorio == "true" ]; then
+
+		for archivo in `find $1`
+
+		do
+			
+			tipo=`( test -h $archivo && echo "Enlace simbólico" ) || ( test -f $archivo && echo "Archivo regular" ) || ( test -d $archivo && echo "Directorio" )`
+
+		echo "$archivo : $tipo"
+
+		done
+	
+	else 
+
+		echo "El argumento ha de ser un directorio existente"
+
+	fi
+
+else
+
+	echo "El número de argumentos es incorrecto."
+
+fi
